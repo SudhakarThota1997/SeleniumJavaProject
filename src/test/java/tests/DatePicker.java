@@ -11,12 +11,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class DatePicker {
 
 	public static void main(String[] args) {
+
 		String date = "24", month = "September", year = "2028";
 		WebDriver driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();
 		driver.get("https://jqueryui.com/datepicker/");
-		
+
 		driver.switchTo().frame(0);
 
 		driver.findElement(By.xpath("//input[@id='datepicker']")).click();
@@ -25,7 +26,8 @@ public class DatePicker {
 			String currentMonth = driver.findElement(By.xpath("//span[@class='ui-datepicker-month']")).getText();
 			String currentYear = driver.findElement(By.xpath("//span[@class='ui-datepicker-year']")).getText();
 			if (currentMonth.equals(month) && currentYear.equals(year)) {
-				List<WebElement> dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tr/td/a"));
+				List<WebElement> dates = driver
+						.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tr/td/a"));
 				for (WebElement cDate : dates) {
 					String currentDate = cDate.getText();
 					if (currentDate.equals(date)) {
